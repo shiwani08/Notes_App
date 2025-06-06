@@ -1,0 +1,37 @@
+form {
+     border: 3px solid #f0f0f0;
+}
+
+input[type=text], input[type=password] {
+     width: 50%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     box-sizing: border-box;
+}
+
+.submitButton {
+     background-color: rgb(143, 175, 189);
+     color: white;
+     margin: 8px 0;
+     border: none;
+     cursor: pointer;
+     width: 50%;
+}
+
+.submitButton:hover {
+    background-color: rgb(52, 52, 163);
+}
+.cancelButton {
+     background-color: rgb(216, 156, 156);
+     color: white;
+     margin: 8px 0;
+     border: none;
+     cursor: pointer;
+     width: 50%;
+}
+
+.cancelButton:hover {
+    background-color: rgb(163, 52, 52);
+}

@@ -1,0 +1,1 @@
+## A full stack notes taking app with proper authentication.
