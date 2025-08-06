@@ -1,7 +1,8 @@
 //synchronous means block the thread until the operation is complete
 //asynchronous means non-blocking, it will not block the thread
 
-import { log } from "./logger.js";
+// import { log } from "./logger.js";
+import https from "https";
 import * as os from "os";
 import fs from "fs";
 import { EventEmitter } from "events";
@@ -9,10 +10,21 @@ import { EventEmitter } from "events";
 // console.log(module);
 // console.log(log);
 const eventEmitter = new EventEmitter();
+const server = https.createServer();
+server.listen(3000);
+
+server.on('connection', (socket) => {
+  console.log('New connection established');
+});
+
+console.log(`Server running at https://localhost:${server.address().port}/`);
 
 // this is the callback function which is listening to the event
-eventEmitter.on("This is the message", (arg) => {
-  console.log("Listener called", arg);
+// addEventListener is used to register the event - mostly used in browser
+// on can also be  used to register the event - used in only Node.js
+
+eventEmitter.on("This is the message", (event) => {
+  console.log("Listener called", event);
 });
 
 const total = os.totalmem();
