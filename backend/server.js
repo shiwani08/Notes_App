@@ -5,11 +5,11 @@ import path from 'path';
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.sendFile(path.join(path.resolve(), '../frontend/index.html'));
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(path.resolve(), '../frontend/login.html'));
+  res.sendFile(path.join(path.resolve(), '../frontend/pages/login.html'));
 });
 
 app.listen(PORT);
