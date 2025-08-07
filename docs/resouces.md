@@ -9,3 +9,6 @@
 3. **REACT:** 
 
 4. **MONGO DB:** 
+
+5. **MOCKAROO:** For generating dummy data
+    https://www.mockaroo.com/
