@@ -46,8 +46,9 @@ app.get("/users/:id", (req, res) => {
     res.status(404).json({ error: 'User not found' });
   }
 });
-
-app.get("/api/users/:id", (req, res) => {
+ 
+app.route('/api/users/:id')
+.get((req, res) => {
   const id = req.params.id;
   const user = users.find(user => user.id === parseInt(id));
   if (user) {
@@ -55,7 +56,16 @@ app.get("/api/users/:id", (req, res) => {
   } else {
     res.status(404).json({ error: 'User not found' });
   }
-});
+})
+.post((req,res) => {
+  res.send('pending post request');
+})
+.patch((req,res) => {
+  res.send('pending patch request');
+})
+.delete((req,res) => {
+  res.send('pending delete request');
+})
 
 app.listen(PORT);
 console.log(`Express server running at http://localhost:${PORT}/`); 
