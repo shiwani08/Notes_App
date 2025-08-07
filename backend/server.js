@@ -13,7 +13,7 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(path.resolve(), '../frontend/pages/login.html'));
 });
 
-app.get("/users", (req, res) => {
+app.get('/users', (req, res) => {
   const html = users.map(user => `
     <div>
       <h2>${user.first_name} ${user.last_name}</h2>
@@ -22,31 +22,50 @@ app.get("/users", (req, res) => {
       <p>Country: ${user.country}</p>
     </div>
   `).join('');
-  res.send(html);
+
+  res.send(`
+    <html>
+      <head><title>Users List</title></head>
+      <body>
+        ${html}
+      </body>
+    </html>
+  `);
 });
 
-app.get("/api/users", (req, res) => {
+app.route('/users/:id')
+  .get((req, res) => {
+    const id = req.params.id;
+    const user = users.find(user => user.id === parseInt(id));
+    if (user) {
+      // Return HTML for single user:
+      const html = `
+        <div>
+          <h2>${user.first_name} ${user.last_name}</h2>
+          <p>Email: ${user.email}</p>
+          <p>City: ${user.city}</p>
+          <p>Country: ${user.country}</p>
+        </div>
+      `;
+      res.send(html);
+    } else {
+      res.status(404).send('<h1>User not found</h1>');
+    }
+  })
+  .post((req, res) => {
+    res.send('pending post request');
+  })
+  .patch((req, res) => {
+    res.send('pending patch request');
+  })
+  .delete((req, res) => {
+    res.send('pending delete request');
+  });
+ 
+app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
-app.get("/users/:id", (req, res) => {
-  const id = req.params.id;
-  const user = users.find(user => user.id === parseInt(id));
-  if (user) {
-    const html = `
-      <div>
-        <h2>${user.first_name} ${user.last_name}</h2>
-        <p>Email: ${user.email}</p>
-        <p>City: ${user.city}</p>
-        <p>Country: ${user.country}</p>
-      </div>
-    `;
-    res.send(html);
-  } else {
-    res.status(404).json({ error: 'User not found' });
-  }
-});
- 
 app.route('/api/users/:id')
 .get((req, res) => {
   const id = req.params.id;
