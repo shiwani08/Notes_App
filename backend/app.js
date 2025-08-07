@@ -1,6 +1,3 @@
-//synchronous means block the thread until the operation is complete
-//asynchronous means non-blocking, it will not block the thread
-
 // import { log } from "./logger.js";
 import https from "https";
 import * as os from "os";
