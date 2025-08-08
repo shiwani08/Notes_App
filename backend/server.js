@@ -13,6 +13,15 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(path.resolve(), '../frontend/pages/login.html'));
 });
 
+// inbuilt middleware to parse JSON bodies
+  app.use(express.urlencoded({ extended: false }));
+
+// custom header middleware
+app.use((req, res, next) => {
+  res.setHeader('X-Custom-Header', 'Shiwani is awesome');
+  next();
+});
+
 app.get('/users', (req, res) => {
   const html = users.map(user => `
     <div>

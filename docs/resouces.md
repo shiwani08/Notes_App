@@ -8,7 +8,7 @@
 
 3. **REACT:** 
 
-4. **MONGO DB:** 
+4. **MONGO DB:** https://www.mongodb.com/resources/products/fundamentals/basics
 
 5. **MOCKAROO:** For generating dummy data
     https://www.mockaroo.com/
